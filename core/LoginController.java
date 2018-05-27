@@ -67,10 +67,10 @@ public class LoginController {
         }
         else {
             if(et == ErrorType.USER_PASSWORD_ERROR) {
-                DialogUtil.getInstance(s, "提示", "密码错误", "取消", "好的");
+                DialogUtil.getInstance(s, "提示", "密码错误！", "取消", "好的");
             }
             if(et == ErrorType.USER_NOT_EXIST) {
-                DialogUtil.getInstance(s, "提示", "用户不存在", "取消", "好的");
+                DialogUtil.getInstance(s, "提示", "用户不存在！", "取消", "好的");
             }
         }
     }
