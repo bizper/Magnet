@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="core.mybatis.UserMapper">
+    <resultMap id="result" type="user.User">
+        <result column="ID" jdbcType="INTEGER" property="id" />
+        <result column="Username" jdbcType="VARCHAR" property="username"/>
+        <result column="Password" jdbcType="VARCHAR" property="password"/>
+        <result column="Level" jdbcType="INTEGER" property="level"/>
+        <result column="LoginTime" jdbcType="TIMESTAMP" property="loginTime"/>
+    </resultMap>
+    <select id="confirmUser" parameterType="String" resultMap="result">
+        SELECT Username FROM user WHERE Username=#{username}
+    </select>
+    <select id="selectUser" parameterType="String" resultMap="result">
+        SELECT ID, Username, Level, LoginTime FROM user WHERE Username=#{username:VARCHAR} AND Password=PASSWORD(#{password:INTEGER})
+    </select>
+    <select id="selectLoginTime" parameterType="String" resultType="java.util.Date">
+        SELECT LoginTime From user WHERE Username=#{username}
+    </select>
+    <insert id="insertUser" parameterType="user.User" useGeneratedKeys="true">
+        INSERT INTO user (Username, Password, Level, LoginTime) VALUES (
+        #{username},
+        PASSWORD(#{password}),
+        #{level},
+        NOW())
+    </insert>
+    <update id="updateUser" parameterType="INTEGER" useGeneratedKeys="true">
+        UPDATE user SET LoginTime=NOW() WHERE ID=#{id}
+    </update>
+    <update id="updatePassword" parameterType="user.User" useGeneratedKeys="true">
+        UPDATE user SET Password = PASSWORD(#{password}) WHERE Username=#{username:VARCHAR}
+    </update>
+</mapper>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="core.mybatis.ResultMapper">
+    <sql id="insertHead" >
+        INSERT INTO Lists (Groups, Host, Member, MemberCount, NonMember, NonMemberCount, Region) VALUES
+    </sql>
+    <select id="selectBeanById" parameterType="int" resultType="result.Bean">
+        SELECT * FROM Lists WHERE ID = #{id}
+    </select>
+    <select id="selectBeanList" parameterType="String" resultType="result.Bean" >
+        SELECT * FROM Lists WHERE 1=1
+            <if test="Region != null">AND Region=#{Region}</if>
+            <if test="Group != null">AND Groups=#{Group}</if>
+            <if test="Host != null">AND Host=#{Host}</if>
+    </select>
+    <select id="selectBeanListByLike" parameterType="String" resultType="result.Bean" >
+        SELECT * FROM Lists WHERE 1=1
+        <if test="Region != null">AND Region=#{Region}</if>
+        <if test="Group != null">AND Groups=#{Group}</if>
+        <if test="Host != null">AND Host=#{Host}</if>
+        <if test="Member != null">AND Member LIKE "%"#{Member}"%"</if>
+    </select>
+    <insert id="insertBean" parameterType="result.Bean" useGeneratedKeys="true">
+        <include refid="insertHead" />
+        (#{Groups}, #{Host}, #{Member}, #{MemberCount}, #{NonMember}, #{NonMemberCount}, #{Region})
+    </insert>
+    <update id="updateBean" parameterType="result.Bean" useGeneratedKeys="true">
+        UPDATE Lists SET
+        Groups=#{Groups},
+        Host=#{Host},
+        Member=#{Member},
+        MemberCount=#{MemberCount},
+        NonMember=#{NonMember},
+        NonMemberCount=#{NonMemberCount},
+        Region=#{Region} WHERE ID=#{ID}
+    </update>
+    <insert id="insertBeanList" parameterType="java.util.List" useGeneratedKeys="true">
+        <include refid="insertHead" />
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.Groups}, #{item.Host}, #{item.Member}, #{item.MemberCount}, #{item.NonMember}, #{item.NonMemberCount}, #{item.Region})
+        </foreach>
+    </insert>
+    <delete id="deleteBean" parameterType="result.Bean">
+        DELETE FROM Lists WHERE Groups=#{Groups} AND Host=#{Host} AND Region=#{Region}
+    </delete>
+    <delete id="cleanList">
+        TRUNCATE Lists;
+    </delete>
+</mapper>

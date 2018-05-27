@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1270.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="core.Controller">
+   <children>
+      <Accordion layoutX="1068.0" prefHeight="760.0" prefWidth="200.0" expandedPane="$titled_user">
+        <panes>
+          <TitledPane fx:id="titled_user" cache="true" prefHeight="500.0" prefWidth="202.0" text="账号">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="user_title" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" prefHeight="50.0" prefWidth="200.0" text="账号" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <textFill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop color="#a1649a" />
+                                    <Stop color="#38ba76" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </textFill>
+                        </Label>
+                        <Button layoutX="120.0" layoutY="653.0" mnemonicParsing="false" onAction="#changePassword" text="修改密码" AnchorPane.rightAnchor="10.0" />
+                        <Button layoutX="10.0" layoutY="653.0" mnemonicParsing="false" onAction="#exitLogin" text="退出登陆" AnchorPane.leftAnchor="10.0" />
+                        <Label layoutX="14.0" layoutY="74.0" text="账号等级：" />
+                        <Label fx:id="user_level" layoutX="80.0" layoutY="74.0" text="0" />
+                        <Label layoutX="14.0" layoutY="119.0" text="上次登陆时间：">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lastTime" layoutX="14.0" layoutY="147.0" text="Label" />
+                     </children>
+                     <effect>
+                        <Blend />
+                     </effect>
+                  </AnchorPane>
+            </content>
+          </TitledPane>
+          <TitledPane text="设置">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <CheckBox fx:id="setting_allow_inquire_cache" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" selected="true" text="设置1" AnchorPane.leftAnchor="10.0" />
+                        <ScrollBar layoutX="186.0" orientation="VERTICAL" prefHeight="530.0" prefWidth="14.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </TitledPane>
+          <TitledPane text="关于">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Hyperlink fx:id="contact_author" layoutX="24.0" layoutY="191.0" text="needfast@hotmail.com" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="60.0" />
+                        <Label layoutX="24.0" layoutY="161.0" text="Email：" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="40.0" />
+                        <Label layoutX="24.0" layoutY="127.0" text="Version：0.1" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </TitledPane>
+        </panes>
+      </Accordion>
+      <TabPane prefHeight="740.0" prefWidth="1069.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="sheet_inquire" text="查询表">
+            <content>
+              <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="695.0" prefWidth="1069.0">
+                     <children>
+                        <ToolBar prefHeight="35.0" prefWidth="1069.0">
+                           <items>
+                              <CheckBox fx:id="inquire_allow_id" mnemonicParsing="false" onAction="#isAllowInquireName" text="行政村" />
+                              <TextField fx:id="inquire_text_id" disable="true" prefHeight="23.0" prefWidth="140.0" promptText="行政村" />
+                              <CheckBox fx:id="inquire_allow_group" mnemonicParsing="false" onAction="#isAllowInquireSex" text="组别" />
+                              <TextField fx:id="inquire_text_group" disable="true" prefHeight="23.0" prefWidth="140.0" promptText="组别" />
+                              <CheckBox fx:id="inquire_allow_master" mnemonicParsing="false" onAction="#isAllowInqureProperty" selected="true" text="户主" />
+                              <TextField fx:id="inquire_text_master" prefHeight="23.0" prefWidth="140.0" promptText="户主" />
+                              <Button fx:id="inquire_action" mnemonicParsing="false" onAction="#Inquire" text="查询" />
+                              <Button mnemonicParsing="false" onAction="#change" text="修改" />
+                              <Button mnemonicParsing="false" onAction="#remove" text="删除" />
+                              <CheckBox fx:id="allow_inquire_like" mnemonicParsing="false" onAction="#isAllowInquireLike" text="允许模糊查询" />
+                              <TextField fx:id="inquire_text_member" disable="true" prefHeight="23.0" prefWidth="140.0" promptText="成员名单" />
+                           </items>
+                        </ToolBar>
+                        <TableView fx:id="sheet_inquire_show" layoutX="6.0" layoutY="35.0" prefHeight="658.0" prefWidth="1069.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="34.0">
+                          <columns>
+                            <TableColumn fx:id="sheet_id" editable="false" prefWidth="75.0" text="序号" />
+                              <TableColumn fx:id="sheet_group" prefWidth="75.0" text="组别" />
+                              <TableColumn fx:id="sheet_master" prefWidth="75.0" text="户主" />
+                            <TableColumn fx:id="sheet_object" editable="false" prefWidth="75.0" text="界定对象">
+                                 <columns>
+                                    <TableColumn fx:id="sheet_member" prefWidth="75.0" text="成员对象" />
+                                    <TableColumn fx:id="sheet_count_1" prefWidth="75.0" text="人数" />
+                                    <TableColumn fx:id="sheet_non_member" prefWidth="75.0" text="非成员名单" />
+                                    <TableColumn fx:id="sheet_count_2" prefWidth="75.0" text="人数" />
+                                 </columns></TableColumn>
+                              <TableColumn fx:id="sheet_region" prefWidth="75.0" text="区域" />
+                          </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="导入表">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="695.0" prefWidth="1069.0">
+                     <children>
+                        <TableView fx:id="sheet_insert_show" layoutX="6.0" layoutY="35.0" prefHeight="658.0" prefWidth="1069.0" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="34.0">
+                           <columns>
+                              <TableColumn fx:id="sheet_id1" editable="false" prefWidth="75.0" text="序号" />
+                              <TableColumn fx:id="sheet_group1" prefWidth="75.0" text="组别" />
+                              <TableColumn fx:id="sheet_master1" prefWidth="75.0" text="户主" />
+                              <TableColumn fx:id="sheet_object1" editable="false" prefWidth="75.0" text="界定对象">
+                                 <columns>
+                                    <TableColumn fx:id="sheet_member1" prefWidth="75.0" text="成员对象" />
+                                    <TableColumn fx:id="sheet_count_11" prefWidth="75.0" text="人数" />
+                                    <TableColumn fx:id="sheet_non_member1" prefWidth="75.0" text="非成员名单" />
+                                    <TableColumn fx:id="sheet_count_21" prefWidth="75.0" text="人数" />
+                                 </columns>
+                              </TableColumn>
+                              <TableColumn fx:id="sheet_region1" prefWidth="75.0" text="区域" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                        <ToolBar prefHeight="35.0" prefWidth="1069.0">
+                          <items>
+                              <Label text="导入文件：" />
+                              <TextField fx:id="input_file_text" editable="false" promptText="选择文件位置" />
+                            <Button fx:id="input_file_choose" mnemonicParsing="false" onAction="#inputFileChoose" text="......" />
+                              <Button fx:id="insert_into_database" mnemonicParsing="false" onAction="#insertIntoDatabase" prefHeight="23.0" prefWidth="92.0" text="导入数据库" />
+                              <Button fx:id="create_new_result" mnemonicParsing="false" onAction="#createNewResult" text="创建条目" />
+                          </items>
+                        </ToolBar>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <Label fx:id="status_text" layoutX="672.0" layoutY="730.0" prefHeight="23.0" prefWidth="169.0" text="Status:" />
+   </children>
+</Pane>
